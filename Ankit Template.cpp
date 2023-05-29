@@ -25,7 +25,7 @@ signed main()
     while(t--)
     {
          
-	}
+    }
 }
 
 
