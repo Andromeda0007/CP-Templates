@@ -60,5 +60,6 @@ class SGTree{
         {
             update(2*ind+2, mid+1, high, pos, val);
         }
+        seg[ind] = min(seg[2*ind+1], seg[2*ind+2]);
     }
 };
