@@ -1,0 +1,52 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<pair<int,int>>> graph(n+1);
+    for(int i=0; i<m; i++)
+    {
+        int a, b, wt;
+        cin >> a >> b >> wt;
+        graph[a].push_back({b, wt});
+        graph[b].push_back({a, wt});
+    }
+
+    priority_queue<pair<int, pair<int,int>>, vector<pair<int, pair<int,int>>>, greater<pair<int, pair<int,int>>>> pq;
+
+    pq.push({0, {0, -1}});
+    vector<int> vis(n+1, -1);
+
+    int sum=0;
+    vector<pair<int,int>> MST;
+    while(!pq.empty())
+    {
+        int wt = pq.top().first;
+        int child = pq.top().second.first;
+        int parent = pq.top().second.second;
+        pq.pop(); 
+
+        if(vis[child]==-1)
+        {
+            if(parent!=-1) 
+            {
+                MST.push_back({child, parent});
+            }
+            vis[child]=1;
+            sum += wt;
+
+            for(auto &value : graph[child])
+            {
+                if(vis[value.first]==-1)
+                {
+                    pq.push({value.second, {value.first, child}});
+                }
+            }
+        }
+    }
+    cout << sum << endl;
+
+
+}
