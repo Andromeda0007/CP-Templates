@@ -1,0 +1,26 @@
+void calculate_lps(string &s1, vector<int> &lps)
+{
+    int i=1;
+    int len=0;
+    while(i<s1.size())
+    {
+        if(s1[i]==s1[len])
+        {
+            len++;
+            lps[i] = len;
+            i++;
+        }
+        else
+        {
+            if(len>0)
+            {
+                len = lps[len-1];
+            }
+            else
+            {
+                lps[i] = 0;
+                i++;
+            }
+        }
+    }
+}
