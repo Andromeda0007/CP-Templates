@@ -90,7 +90,6 @@ class SGTree{
             int mid = (low+high)>>1; 
             int left = query(2*ind+1, low, mid, l, r);
             int right = query(2*ind+2, mid+1, high, l, r);
-            return min(left, right);
             return (left+right);
 
         } 
