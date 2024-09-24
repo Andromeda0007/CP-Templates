@@ -1,0 +1,31 @@
+void compute_hash(string &s1, vector<int> &dp) 
+{
+    int p = 31;    
+    int power = 1;
+    int value = 0;
+ 
+    for(int i=0; i<s1.size(); i++)
+    {
+        value = (value + (s1[i]-'a'+1) * power);
+        value = value%mod;
+        dp.pb(value);
+        power = (power*p) % mod;
+    }
+}
+ 
+int binexp(int a, int b)
+{
+    int ans = 1;
+    while(b>0)
+    {
+        if(b&1)
+        {
+            ans *= a;
+            ans %= mod;
+        }
+        a *= a;
+        a %= mod;
+        b /= 2;
+    }
+    return ans;
+}
